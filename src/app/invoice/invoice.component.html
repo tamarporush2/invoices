@@ -1,0 +1,28 @@
+<div class="gridInvoice" *ngIf="!messages">
+    <div class="search">
+        <input type="text" pInputText [(ngModel)]="invoiceSearch" />
+        <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true">
+        </p-calendar>
+        <p-button label="חיפוש" (click)="onSearch()"></p-button>
+
+    </div>
+
+    <p-table [value]="filteredInvoices">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>תיאור תעודה</th>
+                <th>ספק</th>
+                <th>עלות</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-invoice>
+            <tr>
+                <td>{{ invoice.description }}</td>
+                <td>{{ invoice.supplierNmae }}</td>
+                <td>{{ invoice.cost }}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<p-messages *ngIf="messages" [(value)]="messages" [enableService]="false" />
