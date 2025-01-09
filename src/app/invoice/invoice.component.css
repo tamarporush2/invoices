@@ -3,10 +3,14 @@
     text-align: right;
 }
 .gridInvoice {
-    background: var(--surface-card);
-    padding: 2rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
+ display: flex;
+ div{
+    flex-basis: 50%;
+ }
+ .show{
+    flex-basis: 100%;
+
+ }
 }
 .search{
     display: flex;

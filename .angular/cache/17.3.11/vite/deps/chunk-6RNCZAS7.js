@@ -1,24 +1,36 @@
 import {
+  ObjectUtils,
+  PrimeNGConfig
+} from "./chunk-UFZUQ4D7.js";
+import {
   DOCUMENT,
   isPlatformBrowser
 } from "./chunk-XLSINCXO.js";
 import {
-  PrimeNGConfig
-} from "./chunk-WGZJ3IQ7.js";
-import {
+  ChangeDetectionStrategy,
+  Component,
   Directive,
   ElementRef,
   Inject,
+  Input,
+  InputFlags,
   NgModule,
   NgZone,
   Optional,
   PLATFORM_ID,
   Renderer2,
+  ViewEncapsulation$1,
+  booleanAttribute,
   setClassMetadata,
+  ɵɵInputTransformsFeature,
+  ɵɵStandaloneFeature,
+  ɵɵdefineComponent,
   ɵɵdefineDirective,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
-  ɵɵdirectiveInject
+  ɵɵdirectiveInject,
+  ɵɵprojection,
+  ɵɵprojectionDef
 } from "./chunk-YFXVGDDX.js";
 
 // node_modules/primeng/fesm2022/primeng-dom.mjs
@@ -891,10 +903,87 @@ var RippleModule = class _RippleModule {
   }], null, null);
 })();
 
+// node_modules/primeng/fesm2022/primeng-baseicon.mjs
+var _c0 = ["*"];
+var BaseIcon = class _BaseIcon {
+  label;
+  spin = false;
+  styleClass;
+  role;
+  ariaLabel;
+  ariaHidden;
+  ngOnInit() {
+    this.getAttributes();
+  }
+  getAttributes() {
+    const isLabelEmpty = ObjectUtils.isEmpty(this.label);
+    this.role = !isLabelEmpty ? "img" : void 0;
+    this.ariaLabel = !isLabelEmpty ? this.label : void 0;
+    this.ariaHidden = isLabelEmpty;
+  }
+  getClassNames() {
+    return `p-icon ${this.styleClass ? this.styleClass + " " : ""}${this.spin ? "p-icon-spin" : ""}`;
+  }
+  static ɵfac = function BaseIcon_Factory(t) {
+    return new (t || _BaseIcon)();
+  };
+  static ɵcmp = ɵɵdefineComponent({
+    type: _BaseIcon,
+    selectors: [["ng-component"]],
+    hostAttrs: [1, "p-element", "p-icon-wrapper"],
+    inputs: {
+      label: "label",
+      spin: [InputFlags.HasDecoratorInputTransform, "spin", "spin", booleanAttribute],
+      styleClass: "styleClass"
+    },
+    standalone: true,
+    features: [ɵɵInputTransformsFeature, ɵɵStandaloneFeature],
+    ngContentSelectors: _c0,
+    decls: 1,
+    vars: 0,
+    template: function BaseIcon_Template(rf, ctx) {
+      if (rf & 1) {
+        ɵɵprojectionDef();
+        ɵɵprojection(0);
+      }
+    },
+    encapsulation: 2,
+    changeDetection: 0
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BaseIcon, [{
+    type: Component,
+    args: [{
+      template: ` <ng-content></ng-content> `,
+      standalone: true,
+      changeDetection: ChangeDetectionStrategy.OnPush,
+      encapsulation: ViewEncapsulation$1.None,
+      host: {
+        class: "p-element p-icon-wrapper"
+      }
+    }]
+  }], null, {
+    label: [{
+      type: Input
+    }],
+    spin: [{
+      type: Input,
+      args: [{
+        transform: booleanAttribute
+      }]
+    }],
+    styleClass: [{
+      type: Input
+    }]
+  });
+})();
+
 export {
   DomHandler,
   ConnectedOverlayScrollHandler,
+  BaseIcon,
   Ripple,
   RippleModule
 };
-//# sourceMappingURL=chunk-7CMZ2JM5.js.map
+//# sourceMappingURL=chunk-6RNCZAS7.js.map

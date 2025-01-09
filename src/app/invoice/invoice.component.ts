@@ -10,12 +10,21 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { DisplayPDFComponent } from "../display-pdf/display-pdf.component";
 
 
 @Component({
   selector: 'app-invoice',
   standalone: true,
-  imports: [CommonModule, FormsModule, MessagesModule, TableModule, InputTextModule, ButtonModule, CalendarModule],
+  imports: [CommonModule,
+    FormsModule,
+    MessagesModule,
+    TableModule,
+    InputTextModule,
+    ButtonModule,
+    CalendarModule,
+    DisplayPDFComponent,
+    DisplayPDFComponent],
   providers: [InvoiceService],
   templateUrl: './invoice.component.html',
   styleUrl: './invoice.component.css'
@@ -26,6 +35,7 @@ export class InvoiceComponent {
   rangeDates?: Date[];
   invoiceSearch?: string;
   filteredInvoices: Invoice[] = [];
+  displayPDF: boolean = false;
   constructor(private _invoice: InvoiceService) { }
   ngOnInit() {
     this._invoice.getInvoices().pipe(
@@ -43,11 +53,11 @@ export class InvoiceComponent {
   onSearch() {
     this.filteredInvoices = this.allInvoices?.filter(invoice => {
       let matchesInvoiceDate = true;
-      if (this.rangeDates?.length &&this.rangeDates[0]&&this.rangeDates[1]) {
+      if (this.rangeDates?.length && this.rangeDates[0] && this.rangeDates[1]) {
         let startDate = this.rangeDates[0];
         let endDate = this.rangeDates[1];
-        let invoiceDate=invoice.date?new Date(invoice.date):new Date()
-        matchesInvoiceDate =  invoiceDate>= startDate && invoiceDate <= endDate;
+        let invoiceDate = invoice.date ? new Date(invoice.date) : new Date()
+        matchesInvoiceDate = invoiceDate >= startDate && invoiceDate <= endDate;
       }
       let matchesInvoiceName =
         !this.invoiceSearch ||

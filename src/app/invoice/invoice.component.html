@@ -1,28 +1,41 @@
-<div class="gridInvoice" *ngIf="!messages">
+<div *ngIf="!messages">
     <div class="search">
-        <input type="text" pInputText [(ngModel)]="invoiceSearch" />
-        <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true">
-        </p-calendar>
+        <div>
+            <span>חיפוש לפי שם חשבונית/ספק</span>
+            <input type="text" pInputText [(ngModel)]="invoiceSearch" />
+        </div>
+        <div>
+            <span>חיפוש לפי טווח תאריכים</span>
+            <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true">
+            </p-calendar>
+        </div>
+
         <p-button label="חיפוש" (click)="onSearch()"></p-button>
 
     </div>
+    <div class="gridInvoice">
+        <div [ngClass]="{ 'show': !displayPDF }"><p-table [value]="filteredInvoices">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>תיאור תעודה</th>
+                        <th>ספק</th>
+                        <th>עלות</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-invoice>
+                    <tr (click)="displayPDF = !displayPDF">
+                        <td>{{ invoice.description }}</td>
+                        <td>{{ invoice.supplierNmae }}</td>
+                        <td>{{ invoice.cost }}</td>
 
-    <p-table [value]="filteredInvoices">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>תיאור תעודה</th>
-                <th>ספק</th>
-                <th>עלות</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-invoice>
-            <tr>
-                <td>{{ invoice.description }}</td>
-                <td>{{ invoice.supplierNmae }}</td>
-                <td>{{ invoice.cost }}</td>
+                    </tr>
+                </ng-template>
+            </p-table></div>
+        <div>
+            <app-display-pdf *ngIf="displayPDF"></app-display-pdf>
+        </div>
+    </div>
 
-            </tr>
-        </ng-template>
-    </p-table>
 </div>
+
 <p-messages *ngIf="messages" [(value)]="messages" [enableService]="false" />
